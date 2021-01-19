@@ -1,0 +1,20 @@
+# Modified from github.com/Der-Eddy/discord_bot/blob/master/discord.service.example
+# Allows script to be executed after boot on Raspberry Pi
+# Script path -> /lib/systemd/system/EZ.service
+
+[Unit]
+Description=EZ Discord Bot
+After=multi-user.target
+[Service]
+WorkingDirectory=/home/pi/ezbot
+Environment="PYTHONHASHSEED=0"
+User=pi
+Group=pi
+ExecStart=/usr/bin/python3 /home/pi/ezbot/EZ.py
+Type=idle
+Restart=on-failure
+RestartSec=15
+TimeoutStartSec=15
+
+[Install]
+WantedBy=multi-user.target
